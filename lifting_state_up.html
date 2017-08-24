@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>An introduction to JSX</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function BoilingWater(props) {
+            if(props.celcius >= 100) {
+                return <p>Water would boil</p>;
+            } 
+
+            return <p>Water would not boil</p>;
+        }
+
+        class Calculator extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {temperature: ''};
+            }
+
+            handleChange = (event) => {
+                this.setState({
+                    temperature: event.target.value
+                });
+            }
+
+            render() {
+                return (
+                    <fieldset>
+                        <legend>Enter temperature value: </legend>
+                        <input type="text" value={this.state.temperature} onChange={this.handleChange} />
+                        <BoilingWater celcius={parseFloat(this.state.temperature)} />
+                    </fieldset>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Calculator/>,
+            document.getElementById('root')
+        );
+    </script>
+  </body>
+</html>

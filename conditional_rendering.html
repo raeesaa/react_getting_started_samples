@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>An introduction to JSX</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      //Component to be rendered if user is logged in
+      function UserGreeting(props) {
+          return <h1>Welcome back!</h1>;
+      }
+
+      //Component to be rendered if user is not logged in
+      function GuestGreeting(props) {
+          return <h1>Please login to proceed!</h1>
+      }
+
+      //Component that will perform conditional check and compose appropriate component
+      function Greeting(props) {
+          if(props.isLoggedIn) {
+            return <UserGreeting />;
+          } 
+
+          return <GuestGreeting />;
+      }
+
+      ReactDOM.render(
+          <Greeting isLoggedIn={true} />,
+          document.getElementById("root")
+      );
+
+    </script>
+  </body>
+</html>

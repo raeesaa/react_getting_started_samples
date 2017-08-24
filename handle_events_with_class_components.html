@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>An introduction to JSX</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class ActionButton extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { isButtonOn: true };
+                this.handleClick = this.handleClick.bind(this);
+            };
+
+            handleClick() {
+               this.setState(previousState => ({
+                    isButtonOn: !previousState.isButtonOn
+               }));
+            }
+
+            render() {
+                return (<button onClick={this.handleClick}> {this.state.isButtonOn ? "ON" : "OFF"} </button>)
+            }
+
+        }
+
+        ReactDOM.render(
+            <ActionButton/>,
+            document.getElementById("root")
+        );
+      
+    </script>
+  </body>
+</html>
