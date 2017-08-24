@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>An introduction to JSX</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+       
+        class App extends React.Component {
+
+            render() {
+                return (<div>
+                            <p>Array: {this.props.propArray}</p>
+                            <p>Boolean: {this.props.propBool === true ? "True" : "False"}</p>
+                            <p>Function: {this.props.propFunc}</p>
+                            <p>Number: {this.props.propNumber}</p>
+                            <p>String: {this.props.propString}</p>
+                            <p>Object: {this.props.propObject}</p>
+
+                        </div>
+                    );
+            }
+        }
+
+        /**
+        * Accessing propTypes from React has been deprecated and it is 
+        * suggested to use prop-types package instead
+        */
+        App.propTypes = {
+            propArray: React.PropTypes.array.isRequired, //type and validation
+            propBool: React.PropTypes.bool.isRequired, //type and validation
+            propFunc: React.PropTypes.func, //type
+            propNumber: React.PropTypes.number, //type
+            propString: React.PropTypes.string, //type
+            propObject: React.PropTypes.object //type
+        }
+
+        App.defaultProps = {
+            propArray: [1, 2, 3, 4, 5],
+            propBool: true,
+            propFunction: null,
+            propNumber: 5,
+            propString: "Property string",
+            propObject: null
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+    </script>
+  </body>
+</html>

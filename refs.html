@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>An introduction to JSX</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+       
+        class App extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: ''
+                }
+            }
+
+            onChangeHandler = (event) => {
+                this.setState({
+                    value: event.target.value
+                });
+            }
+
+            onClickHandler = (event) => {
+                this.setState({
+                    value: ''
+                });
+                this.textInput.focus();
+            }
+
+            render() {
+                return (<div>
+                            <input type="text" ref={(input) => this.textInput = input } value={this.state.value} onChange={this.onChangeHandler} />
+                            <button onClick={this.onClickHandler}>Clear</button>    
+                            <p>{this.state.value}</p>                        
+                        </div>)
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+    </script>
+  </body>
+</html>
